@@ -9,112 +9,112 @@ const app = document.querySelector<HTMLDivElement>('#app')!
 
 app.innerHTML = `
   <main class="game-shell">
-    <div id="world" aria-label="3D block world"></div>
+    <div id="world" aria-label="עולם בלוקים תלת־ממדי"></div>
 
     <header class="topbar glass">
-      <button class="brand" id="home-button" aria-label="Minefolk home">
+      <button class="brand" id="home-button" aria-label="חזרה למסך הבית של יאירקראפט">
         <span class="brand-cube"><i></i></span>
-        <span>MINEFOLK</span>
+        <span>יאירקראפט</span>
       </button>
-      <div class="world-status"><span class="status-dot"></span><span>Birthday Meadow</span><small>PARTY WORLD</small></div>
+      <div class="world-status"><span class="status-dot"></span><span>אחו יום ההולדת</span><small>עולם המסיבה</small></div>
       <div class="top-actions">
-        <button class="icon-button" id="sound-button" aria-label="Toggle sound">♫</button>
-        <button class="primary-button" id="open-creator"><span>+</span> ADD A FRIEND</button>
+        <button class="icon-button" id="sound-button" aria-label="הפעלה או השתקה של הצלילים">♫</button>
+        <button class="primary-button" id="open-creator"><span>+</span> הוספת חברים</button>
       </div>
     </header>
 
     <section class="welcome-card glass" id="welcome-card">
-      <button class="close-card" id="dismiss-welcome" aria-label="Dismiss">×</button>
+      <button class="close-card" id="dismiss-welcome" aria-label="סגירת הברכה">×</button>
       <div class="party-sprinkles" aria-hidden="true">✦　◆　●　✦　■</div>
-      <p class="eyebrow">A LITTLE WORLD FOR A BIG DAY</p>
-      <h1>Happy Birthday!<br><em>Let’s celebrate.</em></h1>
-      <p>Your people are waiting by the cake. Explore the party, open your gifts, and build something unforgettable together.</p>
-      <button class="play-button" id="play-button"><span>▶</span> JOIN THE PARTY</button>
-      <div class="controls-row"><kbd>WASD</kbd> MOVE <span></span><kbd>SPACE</kbd> JUMP <span></span><kbd>E</kbd> INVENTORY</div>
+      <p class="eyebrow">עולם קטן ליום גדול</p>
+      <h1>יום הולדת שמח, יאיר!<br><em>מתחילים לחגוג.</em></h1>
+      <p>כולם מחכים לך ליד העוגה. אפשר לטייל במסיבה, לפתוח מתנות ולבנות יחד משהו בלתי נשכח.</p>
+      <button class="play-button" id="play-button"><span>▶</span> כניסה למסיבה</button>
+      <div class="controls-row"><kbd>WASD</kbd> תנועה <span></span><kbd>SPACE</kbd> קפיצה <span></span><kbd>E</kbd> תיק</div>
     </section>
 
-    <aside class="creator-panel" id="creator-panel" aria-label="Create a friend">
+    <aside class="creator-panel" id="creator-panel" aria-label="יצירת דמות של חבר או חברה">
       <div class="panel-head">
-        <div><p class="eyebrow">CHARACTER STUDIO</p><h2>Add your friend</h2></div>
-        <button class="panel-close" id="close-creator" aria-label="Close">×</button>
+        <div><p class="eyebrow">סטודיו לדמויות</p><h2>הוספת חברים</h2></div>
+        <button class="panel-close" id="close-creator" aria-label="סגירת הסטודיו">×</button>
       </div>
       <div class="portrait-drop" id="portrait-drop">
         <input id="portrait-input" type="file" accept="image/png,image/jpeg,image/webp" hidden>
         <input id="camera-input" type="file" accept="image/*" capture="user" hidden>
         <div class="portrait-preview" id="portrait-preview">
           <span class="upload-icon">↥</span>
-          <strong>Drop a portrait here</strong>
-          <small>or click to choose a photo</small>
+          <strong>גררו לכאן תמונת פנים</strong>
+          <small>או לחצו כדי לבחור תמונה</small>
         </div>
         <div class="camera-stage" id="camera-stage">
-          <video id="camera-video" autoplay muted playsinline aria-label="Camera preview"></video>
+          <video id="camera-video" autoplay muted playsinline aria-label="תצוגה מקדימה של המצלמה"></video>
           <div class="camera-controls">
-            <button id="cancel-camera" type="button">CANCEL</button>
-            <button id="capture-camera" type="button"><i></i> CAPTURE</button>
+            <button id="cancel-camera" type="button">ביטול</button>
+            <button id="capture-camera" type="button"><i></i> צילום</button>
           </div>
         </div>
-        <button class="change-photo" id="change-photo">CHANGE</button>
+        <button class="change-photo" id="change-photo">החלפה</button>
       </div>
       <div class="portrait-actions">
-        <button id="choose-photo" type="button"><span>↥</span> CHOOSE IMAGE</button>
-        <button id="open-camera" type="button"><span>◉</span> USE CAMERA</button>
+        <button id="choose-photo" type="button"><span>↥</span> בחירת תמונה</button>
+        <button id="open-camera" type="button"><span>◉</span> שימוש במצלמה</button>
       </div>
-      <label class="field-label" for="friend-name">CHARACTER NAME</label>
-      <input class="text-input" id="friend-name" type="text" maxlength="18" placeholder="e.g. Maya" autocomplete="off">
-      <label class="field-label">SHIRT COLOR</label>
+      <label class="field-label" for="friend-name">שם הדמות</label>
+      <input class="text-input" id="friend-name" type="text" maxlength="18" placeholder="למשל: מאיה" autocomplete="off">
+      <label class="field-label">צבע החולצה</label>
       <div class="swatches" id="swatches">
-        <button class="swatch active" data-color="#ef654f" style="--swatch:#ef654f" aria-label="Coral"></button>
-        <button class="swatch" data-color="#e8a83d" style="--swatch:#e8a83d" aria-label="Gold"></button>
-        <button class="swatch" data-color="#5a9f78" style="--swatch:#5a9f78" aria-label="Green"></button>
-        <button class="swatch" data-color="#4f87be" style="--swatch:#4f87be" aria-label="Blue"></button>
-        <button class="swatch" data-color="#936fb0" style="--swatch:#936fb0" aria-label="Purple"></button>
+        <button class="swatch active" data-color="#ef654f" style="--swatch:#ef654f" aria-label="אלמוג"></button>
+        <button class="swatch" data-color="#e8a83d" style="--swatch:#e8a83d" aria-label="זהב"></button>
+        <button class="swatch" data-color="#5a9f78" style="--swatch:#5a9f78" aria-label="ירוק"></button>
+        <button class="swatch" data-color="#4f87be" style="--swatch:#4f87be" aria-label="כחול"></button>
+        <button class="swatch" data-color="#936fb0" style="--swatch:#936fb0" aria-label="סגול"></button>
       </div>
       <div class="mini-avatar" id="mini-avatar" aria-hidden="true">
         <div class="mini-head"><div id="mini-face">:)</div></div>
         <div class="mini-body"><i></i><b></b><i></i></div>
       </div>
-      <p class="creator-hint">Your photo is cropped to a square and given a subtle pixel effect.</p>
-      <button class="spawn-button" id="spawn-button">CREATE & SPAWN <span>→</span></button>
+      <p class="creator-hint">התמונה תיחתך לריבוע ותקבל מראה מפוקסל עדין.</p>
+      <button class="spawn-button" id="spawn-button">יצירה והוספה לעולם <span>←</span></button>
     </aside>
 
     <div class="crosshair" id="crosshair"><i></i><i></i></div>
-    <div class="npc-prompt glass" id="npc-prompt"><kbd>F</kbd> TALK TO <b></b></div>
-    <div class="lock-hint" id="lock-hint">Click the world to look around · Press Esc to release</div>
+    <div class="npc-prompt glass" id="npc-prompt"><kbd>F</kbd> לדבר עם <b></b></div>
+    <div class="lock-hint" id="lock-hint">לחצו על העולם כדי להביט סביב · <kbd>Esc</kbd> לשחרור העכבר</div>
 
     <section class="people-dock glass">
-      <div class="dock-title"><span>YOUR PEOPLE</span><b id="friend-count">0 / 8</b></div>
+      <div class="dock-title"><span>החברים שלך</span><b id="friend-count">0 / 8</b></div>
       <div class="people-list" id="people-list"></div>
-      <button class="dock-add" id="dock-add" aria-label="Add friend"><span>+</span><small>ADD FRIEND</small></button>
+      <button class="dock-add" id="dock-add" aria-label="הוספת חבר או חברה"><span>+</span><small>הוספת חברים</small></button>
     </section>
 
-    <nav class="hotbar glass" aria-label="Block inventory">
+    <nav class="hotbar glass" aria-label="סרגל קוביות לבנייה">
       <button class="block-slot active" data-block="grass"><i class="block-icon grass"></i><span>1</span></button>
       <button class="block-slot" data-block="dirt"><i class="block-icon dirt"></i><span>2</span></button>
       <button class="block-slot" data-block="stone"><i class="block-icon stone"></i><span>3</span></button>
       <button class="block-slot" data-block="wood"><i class="block-icon wood"></i><span>4</span></button>
     </nav>
 
-    <section class="inventory-panel glass" id="inventory-panel" aria-label="Inventory" aria-hidden="true">
+    <section class="inventory-panel glass" id="inventory-panel" aria-label="תיק הקוביות" aria-hidden="true">
       <div class="inventory-head">
-        <div><p class="eyebrow">INVENTORY</p><h2>Building blocks</h2></div>
-        <button id="close-inventory" aria-label="Close inventory">×</button>
+        <div><p class="eyebrow">התיק שלי</p><h2>קוביות בנייה</h2></div>
+        <button id="close-inventory" aria-label="סגירת התיק">×</button>
       </div>
       <div class="inventory-grid">
-        <button data-inventory-block="grass"><i class="block-icon grass"></i><b>Grass Block</b><small>1</small></button>
-        <button data-inventory-block="dirt"><i class="block-icon dirt"></i><b>Dirt</b><small>2</small></button>
-        <button data-inventory-block="stone"><i class="block-icon stone"></i><b>Stone</b><small>3</small></button>
-        <button data-inventory-block="wood"><i class="block-icon wood"></i><b>Oak Log</b><small>4</small></button>
+        <button data-inventory-block="grass"><i class="block-icon grass"></i><b>קוביית דשא</b><small>1</small></button>
+        <button data-inventory-block="dirt"><i class="block-icon dirt"></i><b>אדמה</b><small>2</small></button>
+        <button data-inventory-block="stone"><i class="block-icon stone"></i><b>אבן</b><small>3</small></button>
+        <button data-inventory-block="wood"><i class="block-icon wood"></i><b>גזע אלון</b><small>4</small></button>
       </div>
       <div class="key-guide">
-        <span><kbd>WASD</kbd> Move</span><span><kbd>SPACE</kbd> Jump</span>
-        <span><kbd>SHIFT</kbd> Sneak</span><span><kbd>CTRL</kbd> Sprint</span>
-        <span><kbd>LMB</kbd> Mine</span><span><kbd>RMB</kbd> Place</span>
-        <span><kbd>MMB</kbd> Pick block</span><span><kbd>ESC</kbd> Pause</span>
+        <span><kbd>WASD</kbd> תנועה</span><span><kbd>SPACE</kbd> קפיצה</span>
+        <span><kbd>SHIFT</kbd> התגנבות</span><span><kbd>CTRL</kbd> ריצה</span>
+        <span><kbd>LMB</kbd> חציבה</span><span><kbd>RMB</kbd> הנחה</span>
+        <span><kbd>MMB</kbd> בחירת קובייה</span><span><kbd>ESC</kbd> השהיה</span>
       </div>
-      <p>Press <kbd>E</kbd> to close</p>
+      <p>לחצו על <kbd>E</kbd> לסגירה</p>
     </section>
 
-    <div class="game-tip glass" id="game-tip"><kbd>LMB</kbd> MINE <span></span><kbd>RMB</kbd> PLACE <span></span><kbd>CTRL</kbd> SPRINT</div>
+    <div class="game-tip glass" id="game-tip"><kbd>LMB</kbd> חציבה <span></span><kbd>RMB</kbd> הנחה <span></span><kbd>CTRL</kbd> ריצה</div>
 
     <div class="toast" id="toast"></div>
   </main>
@@ -147,7 +147,7 @@ renderer.shadowMap.enabled = true
 renderer.shadowMap.type = THREE.PCFShadowMap
 renderer.outputColorSpace = THREE.SRGBColorSpace
 renderer.domElement.tabIndex = 0
-renderer.domElement.setAttribute('aria-label', 'Minecraft world. Press Enter to play, E for inventory, and Escape to pause.')
+renderer.domElement.setAttribute('aria-label', 'עולם בלוקים. לחצו Enter כדי לשחק, E לפתיחת התיק ו-Escape להשהיה.')
 worldEl.appendChild(renderer.domElement)
 
 const controls = new PointerLockControls(camera, renderer.domElement)
@@ -406,10 +406,11 @@ const signContext = signCanvas.getContext('2d')!
 signContext.fillStyle = '#315e45'
 signContext.fillRect(0, 0, 512, 128)
 signContext.fillStyle = '#f4c95d'
-signContext.font = 'bold 50px monospace'
+signContext.font = 'bold 43px sans-serif'
 signContext.textAlign = 'center'
 signContext.textBaseline = 'middle'
-signContext.fillText('HAPPY BIRTHDAY!', 256, 64)
+signContext.direction = 'rtl'
+signContext.fillText('יום הולדת שמח, יאיר!', 256, 64)
 const signTexture = new THREE.CanvasTexture(signCanvas)
 signTexture.colorSpace = THREE.SRGBColorSpace
 signTexture.magFilter = THREE.NearestFilter
@@ -499,6 +500,7 @@ function setSpeech(sprite: THREE.Sprite, name: string, message: string) {
   context.fillStyle = '#ef654f'
   context.font = 'bold 22px monospace'
   context.textAlign = 'center'
+  context.direction = 'rtl'
   context.fillText(name.toUpperCase(), 256, 42)
   context.fillStyle = '#18362d'
   context.font = 'bold 27px sans-serif'
@@ -590,7 +592,7 @@ function renderPeople() {
   peopleList.innerHTML = ''
   $('#friend-count').textContent = `${savedFriends.length} / 8`
   if (!savedFriends.length) {
-    peopleList.innerHTML = '<p class="empty-people">No one here yet. Add a face to the world.</p>'
+    peopleList.innerHTML = '<p class="empty-people">עדיין אין כאן אף אחד. אפשר להוסיף חברים לעולם.</p>'
     return
   }
   savedFriends.forEach((friend) => {
@@ -599,14 +601,14 @@ function renderPeople() {
     const card = document.createElement('button')
     card.className = 'person-card'
     card.type = 'button'
-    card.setAttribute('aria-label', `Find ${friend.name} in the world`)
-    card.innerHTML = `<span class="person-face"><img src="${friend.portrait}" alt=""><i style="--shirt:${friend.color}"></i></span><span>${escapeHtml(friend.name)}</span><small>IN WORLD</small>`
+    card.setAttribute('aria-label', `מציאת ${friend.name} בעולם`)
+    card.innerHTML = `<span class="person-face"><img src="${friend.portrait}" alt=""><i style="--shirt:${friend.color}"></i></span><span>${escapeHtml(friend.name)}</span><small>בעולם</small>`
     card.addEventListener('click', () => focusFriend(friend.id))
     const removeButton = document.createElement('button')
     removeButton.className = 'person-remove'
     removeButton.type = 'button'
-    removeButton.setAttribute('aria-label', `Remove ${friend.name}`)
-    removeButton.title = `Remove ${friend.name}`
+    removeButton.setAttribute('aria-label', `הסרת ${friend.name}`)
+    removeButton.title = `הסרת ${friend.name}`
     removeButton.textContent = '×'
     removeButton.addEventListener('click', () => removeFriend(friend.id))
     entry.append(card, removeButton)
@@ -626,14 +628,14 @@ function focusFriend(id: string) {
   if (controls.isLocked) controls.unlock()
   camera.position.set(avatar.position.x + 3.8, avatar.position.y + 2.4, avatar.position.z + 4.4)
   camera.lookAt(avatar.position.x, avatar.position.y + 1.4, avatar.position.z)
-  showToast(`${savedFriends.find((friend) => friend.id === id)?.name} is hanging out nearby`)
+  showToast(`${savedFriends.find((friend) => friend.id === id)?.name} נמצא או נמצאת ממש כאן`)
 }
 
 function removeFriend(id: string) {
   const friendIndex = savedFriends.findIndex((friend) => friend.id === id)
   if (friendIndex === -1) return
   const friend = savedFriends[friendIndex]
-  if (!window.confirm(`Remove ${friend.name} from this world?`)) return
+  if (!window.confirm(`להסיר את ${friend.name} מהעולם?`)) return
 
   const avatar = avatars.get(id)
   if (avatar) {
@@ -652,17 +654,17 @@ function removeFriend(id: string) {
   savedFriends.splice(friendIndex, 1)
   persistFriends()
   renderPeople()
-  showToast(`${friend.name} was removed from the world`)
+  showToast(`${friend.name} הוסר או הוסרה מהעולם`)
 }
 
 const playerGreetings = [
-  'Happy birthday! Make a wish!',
-  'This party was built for you!',
-  'Let’s go open a present!',
-  'The cake is absolutely massive!',
-  'I saved you a spot on the dance floor!',
+  'יום הולדת שמח, יאיר! תבקש משאלה!',
+  'המסיבה הזאת נבנתה במיוחד בשבילך!',
+  'יאיר, בוא נפתח מתנה!',
+  'העוגה פשוט ענקית!',
+  'שמרתי לך מקום ברחבת הריקודים!',
 ]
-const worldRemarks = ['I call the biggest slice!', 'These balloons are block-tastic!', 'The dance floor is calling!', 'Best party world ever!']
+const worldRemarks = ['אני רוצה את הפרוסה הכי גדולה!', 'איזה בלונים קובייתיים!', 'רחבת הריקודים קוראת לנו!', 'עולם המסיבה הכי טוב שיש!']
 
 function speakNpc(npc: THREE.Group, message: string, duration = 3400) {
   const bubble = npc.userData.speechBubble as THREE.Sprite
@@ -760,8 +762,8 @@ function updateNpc(npc: THREE.Group, now: number, delta: number) {
   } else {
     if (npc.userData.state === 'socialize' && !npc.userData.hasSpoken) {
       const partner = avatars.get(npc.userData.partnerId)
-      speakNpc(npc, partner ? `${partner.userData.name}, cake race?` : worldRemarks[0])
-      if (partner && !partner.userData.speechBubble.visible) speakNpc(partner, 'You’re on!')
+      speakNpc(npc, partner ? `${partner.userData.name}, תחרות לעוגה?` : worldRemarks[0])
+      if (partner && !partner.userData.speechBubble.visible) speakNpc(partner, 'יאללה!')
       npc.userData.hasSpoken = true
     } else if (npc.userData.state === 'explore-party' && !npc.userData.hasSpoken) {
       speakNpc(npc, worldRemarks[Math.floor(Math.random() * worldRemarks.length)])
@@ -792,12 +794,12 @@ function getFocusedNpc() {
 
 function interactWithNpc() {
   const npc = getFocusedNpc()
-  if (!npc) return showToast('Move closer and look at a friend to talk')
-  const responses = ['I’ll follow you—lead the way!', 'Birthday adventure time!', 'Show me what we’re building!', 'Where to next, party captain?']
+  if (!npc) return showToast('התקרבו לחבר או לחברה והביטו בהם כדי לדבר')
+  const responses = ['אני איתך — לאן הולכים?', 'הגיע הזמן להרפתקת יום הולדת!', 'מה אנחנו בונים?', 'לאן ממשיכים, קפטן יאיר?']
   speakNpc(npc, responses[Math.floor(Math.random() * responses.length)], 4200)
   npc.userData.followUntil = performance.now() + 14000
   npc.userData.nextDecision = npc.userData.followUntil
-  showToast(`${npc.userData.name} is following you`)
+  showToast(`${npc.userData.name} הולך או הולכת אחריך`)
   playSfx(270)
 }
 
@@ -818,14 +820,14 @@ function setCreator(open: boolean) {
 
 function setPortrait(dataUrl: string) {
   pendingPortrait = dataUrl
-  portraitPreview.innerHTML = `<img src="${pendingPortrait}" alt="Portrait preview">`
+  portraitPreview.innerHTML = `<img src="${pendingPortrait}" alt="תצוגה מקדימה של התמונה">`
   $('#mini-face').innerHTML = `<img src="${pendingPortrait}" alt="">`
   $('#portrait-drop').classList.add('has-photo')
 }
 
 function cropPortrait(file: File) {
-  if (!file.type.startsWith('image/')) return showToast('Choose an image file')
-  if (file.size > 8_000_000) return showToast('That image is too large (8 MB max)')
+  if (!file.type.startsWith('image/')) return showToast('יש לבחור קובץ תמונה')
+  if (file.size > 8_000_000) return showToast('התמונה גדולה מדי — עד 8MB')
   const reader = new FileReader()
   reader.onload = () => {
     const image = new Image()
@@ -864,12 +866,12 @@ async function startCamera() {
     await cameraVideo.play()
   } catch {
     stopCamera()
-    showToast('Camera unavailable — check permission or choose an image')
+    showToast('המצלמה אינה זמינה — בדקו הרשאה או בחרו תמונה')
   }
 }
 
 function captureCamera() {
-  if (!cameraVideo.videoWidth || !cameraVideo.videoHeight) return showToast('Camera is still starting')
+  if (!cameraVideo.videoWidth || !cameraVideo.videoHeight) return showToast('המצלמה עדיין מופעלת')
   const tiny = document.createElement('canvas')
   tiny.width = tiny.height = 48
   const ctx = tiny.getContext('2d')!
@@ -881,7 +883,7 @@ function captureCamera() {
   ctx.drawImage(cameraVideo, sourceX, sourceY, side, side, 0, 0, 48, 48)
   setPortrait(tiny.toDataURL('image/jpeg', 0.88))
   stopCamera()
-  showToast('Portrait captured')
+  showToast('התמונה צולמה')
 }
 
 $('#portrait-drop').addEventListener('click', (event) => {
@@ -909,9 +911,9 @@ $('#swatches').addEventListener('click', (event) => {
 
 $('#spawn-button').addEventListener('click', () => {
   const name = friendName.value.trim()
-  if (!pendingPortrait) return showToast('Add a portrait first')
-  if (!name) return showToast('Give your character a name')
-  if (savedFriends.length >= 8) return showToast('This world is full (8 friends max)')
+  if (!pendingPortrait) return showToast('קודם צריך להוסיף תמונת פנים')
+  if (!name) return showToast('צריך לתת לדמות שם')
+  if (savedFriends.length >= 8) return showToast('העולם מלא — אפשר להוסיף עד 8 חברים')
   const friend: SavedFriend = { id: crypto.randomUUID(), name, portrait: pendingPortrait, color: shirtColor }
   savedFriends.push(friend)
   persistFriends()
@@ -920,11 +922,11 @@ $('#spawn-button').addEventListener('click', () => {
   setCreator(false)
   friendName.value = ''
   pendingPortrait = ''
-  portraitPreview.innerHTML = '<span class="upload-icon">↥</span><strong>Drop a portrait here</strong><small>or click to choose a photo</small>'
+  portraitPreview.innerHTML = '<span class="upload-icon">↥</span><strong>גררו לכאן תמונת פנים</strong><small>או לחצו כדי לבחור תמונה</small>'
   $('#mini-face').textContent = ':)'
   $('#portrait-drop').classList.remove('has-photo')
   stopCamera()
-  showToast(`${name} joined Oakridge Valley`)
+  showToast(`${name} הצטרף או הצטרפה לעולם של יאיר`)
 })
 
 // --- Game interaction ------------------------------------------------------
@@ -972,9 +974,9 @@ function enableFallbackLook() {
   fallbackLook = true
   gameActive = true
   $('#crosshair').classList.add('visible')
-  $('#lock-hint').textContent = 'Mouse lock unavailable — drag to look · Arrow keys also look'
+  $('#lock-hint').textContent = 'נעילת העכבר אינה זמינה — גררו כדי להביט · אפשר גם עם החיצים'
   $('#lock-hint').classList.add('visible')
-  showToast('Using drag-to-look mode in this browser')
+  showToast('מצב גרירה למבט הופעל בדפדפן הזה')
 }
 
 async function requestGamePointerLock() {
@@ -991,7 +993,7 @@ function activateGame() {
   renderer.domElement.focus()
   if (fallbackLook) {
     $('#crosshair').classList.add('visible')
-    $('#lock-hint').textContent = 'Drag to look · WASD to move · E for inventory'
+    $('#lock-hint').textContent = 'גרירה למבט · WASD לתנועה · E לפתיחת התיק'
     $('#lock-hint').classList.add('visible')
     return
   }
@@ -1022,7 +1024,8 @@ function selectBlock(type: BlockType, announce = true) {
   document.querySelectorAll('.block-slot, [data-inventory-block]').forEach((element) => element.classList.remove('active'))
   document.querySelector<HTMLButtonElement>(`.block-slot[data-block="${type}"]`)?.classList.add('active')
   document.querySelector<HTMLButtonElement>(`[data-inventory-block="${type}"]`)?.classList.add('active')
-  if (announce) showToast(`${type[0].toUpperCase() + type.slice(1)} block selected`)
+  const blockNames: Record<BlockType, string> = { grass: 'דשא', dirt: 'אדמה', stone: 'אבן', wood: 'עץ' }
+  if (announce) showToast(`נבחרה קוביית ${blockNames[type]}`)
 }
 
 window.addEventListener('keydown', (event) => {
@@ -1047,7 +1050,7 @@ window.addEventListener('keydown', (event) => {
     draggingLook = false
     keys.clear()
     $('#crosshair').classList.remove('visible')
-    $('#lock-hint').textContent = 'Click the world to resume'
+    $('#lock-hint').textContent = 'לחצו על העולם כדי להמשיך'
     $('#lock-hint').classList.add('visible')
     return
   }
@@ -1100,12 +1103,12 @@ function editBlock(place: boolean) {
       mesh.material = frostingMaterial
       mesh.scale.y = 0.36
       mesh.position.y -= 0.32
-      const wishes = ['A year full of adventures!', 'More cake unlocked!', 'Your friends are the real treasure!', 'Birthday magic found!']
+      const wishes = ['שנה מלאה בהרפתקאות!', 'עוד עוגה נפתחה!', 'החברים שלך הם האוצר האמיתי!', 'קסם יום הולדת נמצא!']
       showToast(wishes[Math.floor(Math.random() * wishes.length)])
       playSfx(330)
       return
     }
-    if (mesh.position.y <= 0) return showToast('The bedrock stays put')
+    if (mesh.position.y <= 0) return showToast('אי אפשר להזיז את סלע האם')
     removeBlock(mesh)
     playSfx(118)
     return
@@ -1187,7 +1190,7 @@ controls.addEventListener('unlock', () => {
   if (!inventoryOpen && !creatorPanel.classList.contains('open') && !fallbackLook) {
     gameActive = false
     keys.clear()
-    $('#lock-hint').textContent = 'Click the world to resume · Press E for inventory'
+    $('#lock-hint').textContent = 'לחצו על העולם כדי להמשיך · E לפתיחת התיק'
     $('#lock-hint').classList.add('visible')
   }
 })
@@ -1294,7 +1297,7 @@ $('#sound-button').addEventListener('click', (event) => {
   button.classList.toggle('muted')
   soundEnabled = !button.classList.contains('muted')
   button.textContent = button.classList.contains('muted') ? '×' : '♫'
-  showToast(button.classList.contains('muted') ? 'Sound off' : 'Sound on')
+  showToast(button.classList.contains('muted') ? 'הצליל מושתק' : 'הצליל פועל')
   if (soundEnabled) playSfx(240)
 })
 
